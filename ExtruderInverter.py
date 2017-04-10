@@ -5,11 +5,14 @@
 
 __copyright__ = "Copyright (C) 2017 Guillem Avila - Released under terms of the AGPLv3 License"
 
+with open(filename, "r") as f:
+	lines = f.readlines()
+
 with open(filename, "w") as f:
 	for line in lines:
 		if not line.startswith(';CURA_PROFILE_STRING:'):
 			if 'T1' in line:
-				line = line.replace('T1', 'T0')
+				line = line.replace('T1', 'T0').replace('2nd', '1st')
 			elif 'T0' in line:
-				line = line.replace('T0', 'T1')
+				line = line.replace('T0', 'T1').replace('1st', '2nd')
 		f.write(line)
